@@ -1,7 +1,7 @@
 /*
 规则参照 https://zh.wikisource.org/zh-hans/GB_32100-2015_法人和其他组织统一社会信用代码编码规则
 
-Note: 发现统一社会代码如：p91350213M0001Q7Q47 不符合编码规则，但是通过天眼查能查到该企业
+Note: 发现统一社会代码如：91350213M0001Q7Q47 不符合编码规则，但是通过天眼查能查到该企业
 https://www.tianyancha.com/search?key=91350213M0001Q7Q47
 官方的说法是: 您好，官网数据都是由当地登记管理部门进行回传，建议您咨询发证机关。
 http://www.cods.org.cn/portal/publish/questionList/questionList_1_1_questionDetail_3_1.html
