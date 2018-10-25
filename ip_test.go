@@ -41,11 +41,12 @@ func TestValidateIPFail(t *testing.T) {
 		"a1.1.1.1",
 		"8.8.8.8:da8",
 		"2001:da8:80001:1:202:120:2:100",
+		"",
 	}
 
 	for _, ip := range ips {
 		if ok := validate.ValidateIP(ip); ok {
-			t.Errorf("should be correct ip:%s ", ip)
+			t.Errorf("should not correct ip:%s ", ip)
 		}
 	}
 }

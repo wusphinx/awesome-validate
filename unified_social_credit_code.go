@@ -1,5 +1,11 @@
 /*
 规则参照 https://zh.wikisource.org/zh-hans/GB_32100-2015_法人和其他组织统一社会信用代码编码规则
+
+Note: 发现统一社会代码如：p91350213M0001Q7Q47 不符合编码规则，但是通过天眼查能查到该企业
+https://www.tianyancha.com/search?key=91350213M0001Q7Q47
+官方的说法是: 您好，官网数据都是由当地登记管理部门进行回传，建议您咨询发证机关。
+http://www.cods.org.cn/portal/publish/questionList/questionList_1_1_questionDetail_3_1.html
+
 */
 package validate
 
@@ -8,7 +14,7 @@ import (
 	"regexp"
 )
 
-var unified_social_credit_code_regexp *regexp.Regexp
+var unifiedSocialCreditCodeRegexp *regexp.Regexp
 var code2value map[string]int
 var positionWeights []int
 
@@ -18,7 +24,7 @@ func init() {
 	thirdToEight := `(\d{6})`
 	nineToEighteen := `([0-9A-Z^IOZSV]{10})`
 	str := fmt.Sprintf(`^%s%s%s%s$`, first, second, thirdToEight, nineToEighteen)
-	unified_social_credit_code_regexp = regexp.MustCompile(str)
+	unifiedSocialCreditCodeRegexp = regexp.MustCompile(str)
 	code2value = map[string]int{
 		`0`: 0,
 		`1`: 1,
@@ -55,13 +61,13 @@ func init() {
 	positionWeights = []int{1, 3, 9, 27, 19, 26, 16, 17, 20, 29, 25, 13, 8, 24, 10, 30, 28}
 }
 
-func ValidateUnifiedSocialCreditCode(array string) bool {
-	if !unified_social_credit_code_regexp.MatchString(array) {
+func ValidateUnifiedSocialCreditCode(unifiedSocialCreditCode string) bool {
+	if !unifiedSocialCreditCodeRegexp.MatchString(unifiedSocialCreditCode) {
 		return false
 	}
 
 	var r int
-	for index, i := range array[:17] {
+	for index, i := range unifiedSocialCreditCode[:17] {
 		c, ok := code2value[string(i)]
 		if !ok {
 			return false
@@ -76,7 +82,7 @@ func ValidateUnifiedSocialCreditCode(array string) bool {
 		r = code2value[`Y`]
 	}
 
-	checkCode, ok := code2value[string(array[17])]
+	checkCode, ok := code2value[string(unifiedSocialCreditCode[17])]
 	if !ok {
 		return false
 	}

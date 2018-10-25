@@ -7,7 +7,6 @@ import (
 )
 
 func TestValidateUnifiedSocialCreditCodeOK(t *testing.T) {
-	// 测试样本
 	certList := []string{
 		"91370281561195776J",
 		"911201126877127408",
@@ -1977,7 +1976,6 @@ func TestValidateUnifiedSocialCreditCodeOK(t *testing.T) {
 }
 
 func TestValidateUnifiedSocialCreditCodeFail(t *testing.T) {
-	// 测试样本
 	certList := []string{
 		"91500109554099639I",
 		"91500109554099639O",
@@ -1989,10 +1987,11 @@ func TestValidateUnifiedSocialCreditCodeFail(t *testing.T) {
 		"F1371523MA3BY6YX03",
 		"52230112MA1AATUM2D",
 		"91M10114MA1GTA7X3D",
+		"",
 	}
 	for _, certNo := range certList {
 		if ok := validate.ValidateUnifiedSocialCreditCode(certNo); ok {
-			t.Errorf("should not incorrect certNo:%s ", certNo)
+			t.Errorf("should not correct certNo:%s ", certNo)
 		}
 	}
 }
